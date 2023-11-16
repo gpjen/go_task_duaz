@@ -51,7 +51,12 @@ func (s *userService) Login(input *UserLogin) (UserLoginFormatter, error) {
 
 	userEmail, err := s.repository.FindBYEmail(input.Email)
 	if err != nil {
-		return user, err
+		return user, errors.New("email or password is wrong")
+	}
+
+	err = bcrypt.CompareHashAndPassword([]byte(userEmail.HashPassword), []byte(input.Password))
+	if err != nil {
+		return user, errors.New("email or password is wrong")
 	}
 
 	user.Name = userEmail.Name
