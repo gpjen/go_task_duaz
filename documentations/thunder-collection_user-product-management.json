@@ -1,0 +1,30 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "user-product-management",
+    "dateExported": "2023-11-16T07:19:22.927Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "32c1f363-a8ce-40db-ae32-5e073902e903",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "",
+            "name": "test",
+            "url": "test/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-11-16T07:14:57.924Z",
+            "modified": "2023-11-16T07:19:03.969Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ],
+    "settings": {
+        "headers": [],
+        "tests": [],
+        "options": {
+            "baseUrl": "localhost:3000/v1/"
+        }
+    }
+}
