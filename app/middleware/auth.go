@@ -33,7 +33,7 @@ func AuthMiddleware(userService users.UserService, authService auth.Service) fib
 			return helper.Response(c, 401, "unauthenticated", nil)
 		}
 
-		c.Locals("userID", userID)
+		c.Locals("userID", uint(userID))
 
 		return c.Next()
 	}

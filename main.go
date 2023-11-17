@@ -31,8 +31,9 @@ func main() {
 
 	userhandler := handler.NewUserHandler(userServices, authServices)
 
-	apiV1.Get("/users", middleware.AuthMiddleware(userServices, authServices), userhandler.FindAll)
 	apiV1.Post("/user", userhandler.Register)
+	apiV1.Get("/users", middleware.AuthMiddleware(userServices, authServices), userhandler.FindAll)
+	apiV1.Put("/user/:id", middleware.AuthMiddleware(userServices, authServices), userhandler.UpdateUser)
 	apiV1.Post("/login", userhandler.Login)
 
 	app.Listen(":3000")

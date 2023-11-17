@@ -2,6 +2,7 @@ package users
 
 import (
 	"errors"
+	"fmt"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -11,6 +12,7 @@ type UserService interface {
 	Login(input *UserLogin) (UserLoginFormatter, error)
 	FindAll() ([]User, error)
 	FindByID(id uint) (User, error)
+	UpdateUser(input UserUpdate, id uint) (User, error)
 }
 
 type userService struct {
@@ -84,4 +86,23 @@ func (s *userService) FindByID(id uint) (User, error) {
 		return user, err
 	}
 	return user, nil
+}
+
+func (s *userService) UpdateUser(input UserUpdate, id uint) (User, error) {
+
+	user, err := s.repository.FindByID(id)
+	if err != nil {
+		return user, fmt.Errorf("user %d not found", id)
+	}
+
+	user.Name = input.Name
+	user.Email = input.Email
+	user.Address = input.Address
+
+	updateUser, err := s.repository.Update(user)
+	if err != nil {
+		return updateUser, err
+	}
+
+	return updateUser, nil
 }

@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"strconv"
 	"user-product-management/app/auth"
 	"user-product-management/app/users"
 	"user-product-management/helper"
@@ -75,4 +76,35 @@ func (h *userHandler) FindAll(c *fiber.Ctx) error {
 		return helper.Response(c, 400, err.Error(), nil)
 	}
 	return helper.Response(c, 200, "find all user", users)
+}
+
+func (h *userHandler) UpdateUser(c *fiber.Ctx) error {
+
+	stringId := c.Params("id")
+
+	dataId, err := strconv.Atoi(stringId)
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+
+	input := new(users.UserUpdate)
+	if err := c.BodyParser(input); err != nil {
+		return helper.Response(c, 400, "Invalid JSON", err.Error())
+	}
+
+	validateList := helper.ValidateInput(input)
+	if validateList != nil {
+		return helper.Response(c, fiber.StatusUnprocessableEntity, "validation error", validateList)
+	}
+
+	if uint(dataId) != c.Locals("userID") {
+		return helper.Response(c, 401, "only the owner can modify this user's data", nil)
+	}
+
+	userUpdate, err := h.userService.UpdateUser(*input, uint(dataId))
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+
+	return helper.Response(c, 200, "update user success", userUpdate)
 }
