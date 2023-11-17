@@ -78,8 +78,24 @@ func (h *userHandler) FindAll(c *fiber.Ctx) error {
 	return helper.Response(c, 200, "find all user", users)
 }
 
-func (h *userHandler) UpdateUser(c *fiber.Ctx) error {
+func (h *userHandler) FindByID(c *fiber.Ctx) error {
 
+	stringId := c.Params("id")
+
+	dataId, err := strconv.Atoi(stringId)
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+
+	user, err := h.userService.FindByID(uint(dataId))
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+	return helper.Response(c, 200, "find user by id", user)
+
+}
+
+func (h *userHandler) UpdateUser(c *fiber.Ctx) error {
 	stringId := c.Params("id")
 
 	dataId, err := strconv.Atoi(stringId)
@@ -94,10 +110,15 @@ func (h *userHandler) UpdateUser(c *fiber.Ctx) error {
 
 	validateList := helper.ValidateInput(input)
 	if validateList != nil {
-		return helper.Response(c, fiber.StatusUnprocessableEntity, "validation error", validateList)
+		return helper.Response(c, 422, "validation error", validateList)
 	}
 
-	if uint(dataId) != c.Locals("userID") {
+	user, ok := c.Locals("user").(users.UserContex)
+	if !ok {
+		return helper.Response(c, 500, "internal server error", user)
+	}
+
+	if (uint(dataId) != user.ID) && (user.Role != "admin") {
 		return helper.Response(c, 401, "only the owner can modify this user's data", nil)
 	}
 
