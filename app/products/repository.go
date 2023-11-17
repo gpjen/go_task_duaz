@@ -7,7 +7,7 @@ type Repository interface {
 	FindAll() ([]Product, error)
 	FindByID(ID uint) (Product, error)
 	Update(product Product) (Product, error)
-	// Delete(product Product) (Product, error)
+	Delete(product Product) (Product, error)
 }
 
 type repository struct {
@@ -46,6 +46,14 @@ func (r *repository) FindByID(ID uint) (Product, error) {
 
 func (r *repository) Update(product Product) (Product, error) {
 	err := r.db.Save(&product).Error
+	if err != nil {
+		return product, err
+	}
+	return product, nil
+}
+
+func (r *repository) Delete(product Product) (Product, error) {
+	err := r.db.Delete(&product).Error
 	if err != nil {
 		return product, err
 	}

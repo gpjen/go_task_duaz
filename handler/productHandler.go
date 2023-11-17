@@ -94,10 +94,32 @@ func (h *productHandler) UpdateProduct(c *fiber.Ctx) error {
 		return helper.Response(c, 500, "internal server error", userContex)
 	}
 
-	productUpdate, err := h.productService.UpdateProduct(*input, uint(dataId), userContex.ID)
+	productUpdate, err := h.productService.UpdateProduct(*input, uint(dataId), userContex)
 	if err != nil {
 		return helper.Response(c, 400, err.Error(), nil)
 	}
 
 	return helper.Response(c, 200, "update product", productUpdate)
+}
+
+func (h *productHandler) DeleteProduct(c *fiber.Ctx) error {
+
+	stringId := c.Params("id")
+
+	dataId, err := strconv.Atoi(stringId)
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+
+	userContex, ok := c.Locals("user").(users.UserContex)
+	if !ok {
+		return helper.Response(c, 500, "internal server error", userContex)
+	}
+
+	productDelete, err := h.productService.DeleteProduct(uint(dataId), userContex)
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+
+	return helper.Response(c, 200, "delete product", productDelete)
 }

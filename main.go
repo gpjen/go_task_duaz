@@ -57,7 +57,7 @@ func main() {
 	apiV1.Get("/product", producthandler.FindAll)
 	apiV1.Get("/product/:id", producthandler.FindByID)
 	apiV1.Put("/product/:id", middleware.AuthMiddleware(userServices, authServices), producthandler.UpdateProduct)
-	// apiV1.Delete("/product/:id", middleware.AuthMiddleware(userServices, authServices), producthandler.DeleteProduct)
+	apiV1.Delete("/product/:id", middleware.AuthMiddleware(userServices, authServices), producthandler.DeleteProduct)
 
 	app.Listen(":3000")
 }

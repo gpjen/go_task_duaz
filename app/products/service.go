@@ -1,13 +1,16 @@
 package products
 
-import "fmt"
+import (
+	"fmt"
+	"user-product-management/app/users"
+)
 
 type Service interface {
 	Create(product ProductRegister, creatorID uint) (Product, error)
 	FindAll() ([]Product, error)
 	FindByID(ID uint) (Product, error)
-	UpdateProduct(input ProductUpdate, productID uint, UserRequesterID uint) (Product, error)
-	// Delete(product Product) (Product, error)
+	UpdateProduct(input ProductUpdate, productID uint, userRequester users.UserContex) (Product, error)
+	DeleteProduct(productID uint, userRequester users.UserContex) (Product, error)
 }
 
 type service struct {
@@ -56,11 +59,15 @@ func (s *service) FindByID(ID uint) (Product, error) {
 
 }
 
-func (s *service) UpdateProduct(input ProductUpdate, productID uint, UserRequesterID uint) (Product, error) {
+func (s *service) UpdateProduct(input ProductUpdate, productID uint, userRequester users.UserContex) (Product, error) {
 
 	product, err := s.repository.FindByID(productID)
 	if err != nil || product.ID == 0 {
 		return product, fmt.Errorf("product not found")
+	}
+
+	if product.CreatorID != userRequester.ID && userRequester.Role != "admin" {
+		return product, fmt.Errorf("you are not allowed to update this product")
 	}
 
 	product.Name = input.Name
@@ -74,5 +81,23 @@ func (s *service) UpdateProduct(input ProductUpdate, productID uint, UserRequest
 	}
 
 	return updatedProduct, nil
+}
 
+func (s *service) DeleteProduct(productID uint, userRequester users.UserContex) (Product, error) {
+
+	product, err := s.repository.FindByID(productID)
+	if err != nil || product.ID == 0 {
+		return product, fmt.Errorf("product not found")
+	}
+
+	if product.CreatorID != userRequester.ID && userRequester.Role != "admin" {
+		return product, fmt.Errorf("you are not allowed to delete this product")
+	}
+
+	deletedProduct, err := s.repository.Delete(product)
+	if err != nil {
+		return deletedProduct, err
+	}
+
+	return deletedProduct, nil
 }
