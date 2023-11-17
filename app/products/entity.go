@@ -4,7 +4,7 @@ import "time"
 
 type Product struct {
 	ID          uint   `json:"id" gorm:"primaryKey"`
-	Name        string `json:"name" gorm:"not null,type:varchar(100)"`
+	Name        string `json:"name" gorm:"not null;type:varchar(100)"`
 	Price       int    `json:"price" gorm:"not null"`
 	Stock       int    `json:"stock" gorm:"not null"`
 	Description string `json:"description" gorm:"not null"`
