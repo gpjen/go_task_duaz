@@ -13,6 +13,7 @@ type UserService interface {
 	FindAll() ([]User, error)
 	FindByID(id uint) (User, error)
 	UpdateUser(input UserUpdate, id uint) (User, error)
+	DeleteUser(id uint) (User, error)
 }
 
 type userService struct {
@@ -105,4 +106,18 @@ func (s *userService) UpdateUser(input UserUpdate, id uint) (User, error) {
 	}
 
 	return updateUser, nil
+}
+
+func (s *userService) DeleteUser(id uint) (User, error) {
+
+	user, err := s.repository.FindByID(id)
+	if err != nil {
+		return user, fmt.Errorf("user %d not found", id)
+	}
+
+	deleteUser, err := s.repository.Delete(user)
+	if err != nil {
+		return deleteUser, err
+	}
+	return deleteUser, nil
 }

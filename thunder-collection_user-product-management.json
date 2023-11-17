@@ -1,22 +1,131 @@
 {
     "client": "Thunder Client",
     "collectionName": "user-product-management",
-    "dateExported": "2023-11-16T07:19:22.927Z",
+    "dateExported": "2023-11-17T05:41:35.399Z",
     "version": "1.1",
-    "folders": [],
+    "folders": [
+        {
+            "_id": "7bbc879c-d3d9-4530-8994-b747d4159897",
+            "name": "Users",
+            "containerId": "",
+            "created": "2023-11-16T16:10:07.130Z",
+            "sortNum": 10000
+        }
+    ],
     "requests": [
         {
-            "_id": "32c1f363-a8ce-40db-ae32-5e073902e903",
+            "_id": "e300815f-c56f-4ff6-89d8-0603f402a8d6",
             "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
-            "containerId": "",
-            "name": "test",
-            "url": "test/",
+            "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
+            "name": "REGISTER USER",
+            "url": "user/",
             "method": "POST",
-            "sortNum": 10000,
-            "created": "2023-11-16T07:14:57.924Z",
-            "modified": "2023-11-16T07:19:03.969Z",
+            "sortNum": 20000,
+            "created": "2023-11-16T16:10:22.800Z",
+            "modified": "2023-11-17T03:17:06.792Z",
             "headers": [],
             "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"agan\",\n  \"email\" : \"agan@gmail.com\",\n  \"address\" : \"jakarta selatan\",\n  \"password\" : \"rahasia123\",\n  \"confirmPassword\" : \"rahasia123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7cd19bd0-d470-45a7-b6c2-6bfd693afffe",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
+            "name": "LOGIN",
+            "url": "login/",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-11-16T17:52:52.889Z",
+            "modified": "2023-11-17T05:39:36.332Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\" : \"agan@gmail.com\",\n  \"password\" : \"rahasia123\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2daadef4-2ca6-4e45-a06c-96cfb0351200",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
+            "name": "GET ALL USERS",
+            "url": "users",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-11-17T00:21:25.113Z",
+            "modified": "2023-11-17T03:21:39.592Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDAyNzc2ODIsInVzZXJJRCI6Mn0.64tflhD3OOTeRp3-9jS4nEfEJjYGjZ0BrayYCzNduvA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "0c1c4df1-6a94-4013-a88f-f2fc0a38875d",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
+            "name": "GET USER BY ID",
+            "url": "user/3",
+            "method": "GET",
+            "sortNum": 45000,
+            "created": "2023-11-17T04:30:35.823Z",
+            "modified": "2023-11-17T05:39:50.151Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDAyNzc2ODIsInVzZXJJRCI6Mn0.64tflhD3OOTeRp3-9jS4nEfEJjYGjZ0BrayYCzNduvA"
+            },
+            "tests": []
+        },
+        {
+            "_id": "acfb5acc-e39b-4959-a83e-ae9989e2a242",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
+            "name": "UPDATE USER BY ID",
+            "url": "user/2",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2023-11-17T02:38:39.477Z",
+            "modified": "2023-11-17T05:40:28.311Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"admin\",\n  \"email\" : \"admin@gmail.com\",\n  \"address\" : \"lebak bulus\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDAyODU4OTIsInVzZXJJRCI6Mn0.oKfDlr2lkp5dhALHwfmQESrkudhlzMMYuEz4SacKIbc"
+            },
+            "tests": []
+        },
+        {
+            "_id": "74fe0553-3ade-4ecf-89af-82ade871cc7c",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
+            "name": "DELETE USER BY ID",
+            "url": "user/3",
+            "method": "DELETE",
+            "sortNum": 60000,
+            "created": "2023-11-17T05:36:57.828Z",
+            "modified": "2023-11-17T05:41:09.547Z",
+            "headers": [],
+            "params": [],
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDAyODU4OTIsInVzZXJJRCI6Mn0.oKfDlr2lkp5dhALHwfmQESrkudhlzMMYuEz4SacKIbc"
+            },
             "tests": []
         }
     ],

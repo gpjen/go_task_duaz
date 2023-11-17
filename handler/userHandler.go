@@ -129,3 +129,29 @@ func (h *userHandler) UpdateUser(c *fiber.Ctx) error {
 
 	return helper.Response(c, 200, "update user success", userUpdate)
 }
+
+func (h *userHandler) DeleteUser(c *fiber.Ctx) error {
+
+	stringId := c.Params("id")
+
+	dataId, err := strconv.Atoi(stringId)
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+
+	user, ok := c.Locals("user").(users.UserContex)
+	if !ok {
+		return helper.Response(c, 500, "internal server error", user)
+	}
+
+	if (uint(dataId) != user.ID) && (user.Role != "admin") {
+		return helper.Response(c, 401, "only the owner can delete this user's data", nil)
+	}
+
+	userDelete, err := h.userService.DeleteUser(uint(dataId))
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+
+	return helper.Response(c, 200, "delete user success", userDelete)
+}

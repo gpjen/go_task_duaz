@@ -47,6 +47,7 @@ func main() {
 	apiV1.Get("/user/:id", middleware.AuthMiddleware(userServices, authServices), userhandler.FindByID)
 	apiV1.Put("/user/:id", middleware.AuthMiddleware(userServices, authServices), userhandler.UpdateUser)
 	apiV1.Post("/login", userhandler.Login)
+	apiV1.Delete("/user/:id", middleware.AuthMiddleware(userServices, authServices), userhandler.DeleteUser)
 
 	app.Listen(":3000")
 }
