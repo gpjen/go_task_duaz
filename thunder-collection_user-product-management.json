@@ -1,7 +1,7 @@
 {
     "client": "Thunder Client",
     "collectionName": "user-product-management",
-    "dateExported": "2023-11-17T05:41:35.399Z",
+    "dateExported": "2023-11-17T13:46:28.149Z",
     "version": "1.1",
     "folders": [
         {
@@ -10,6 +10,13 @@
             "containerId": "",
             "created": "2023-11-16T16:10:07.130Z",
             "sortNum": 10000
+        },
+        {
+            "_id": "363bf79e-feb2-4729-bba9-dac31b8186a0",
+            "name": "Products",
+            "containerId": "",
+            "created": "2023-11-17T07:02:33.838Z",
+            "sortNum": 20000
         }
     ],
     "requests": [
@@ -22,12 +29,12 @@
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-11-16T16:10:22.800Z",
-            "modified": "2023-11-17T03:17:06.792Z",
+            "modified": "2023-11-17T13:19:41.167Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\" : \"agan\",\n  \"email\" : \"agan@gmail.com\",\n  \"address\" : \"jakarta selatan\",\n  \"password\" : \"rahasia123\",\n  \"confirmPassword\" : \"rahasia123\"\n}",
+                "raw": "{\n  \"name\" : \"admin\",\n  \"email\" : \"admin@gmail.com\",\n  \"address\" : \"jakarta selatan\",\n  \"password\" : \"rahasia123\",\n  \"confirmPassword\" : \"rahasia123\"\n}",
                 "form": []
             },
             "tests": []
@@ -41,12 +48,12 @@
             "method": "POST",
             "sortNum": 30000,
             "created": "2023-11-16T17:52:52.889Z",
-            "modified": "2023-11-17T05:39:36.332Z",
+            "modified": "2023-11-17T13:36:31.640Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"email\" : \"agan@gmail.com\",\n  \"password\" : \"rahasia123\"\n}",
+                "raw": "{\n  \"email\" : \"admin@gmail.com\",\n  \"password\" : \"rahasia123\"\n}",
                 "form": []
             },
             "tests": []
@@ -56,17 +63,13 @@
             "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
             "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
             "name": "GET ALL USERS",
-            "url": "users",
+            "url": "user",
             "method": "GET",
             "sortNum": 40000,
             "created": "2023-11-17T00:21:25.113Z",
-            "modified": "2023-11-17T03:21:39.592Z",
+            "modified": "2023-11-17T13:44:46.732Z",
             "headers": [],
             "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDAyNzc2ODIsInVzZXJJRCI6Mn0.64tflhD3OOTeRp3-9jS4nEfEJjYGjZ0BrayYCzNduvA"
-            },
             "tests": []
         },
         {
@@ -74,17 +77,13 @@
             "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
             "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
             "name": "GET USER BY ID",
-            "url": "user/3",
+            "url": "user/1",
             "method": "GET",
             "sortNum": 45000,
             "created": "2023-11-17T04:30:35.823Z",
-            "modified": "2023-11-17T05:39:50.151Z",
+            "modified": "2023-11-17T13:45:11.145Z",
             "headers": [],
             "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDAyNzc2ODIsInVzZXJJRCI6Mn0.64tflhD3OOTeRp3-9jS4nEfEJjYGjZ0BrayYCzNduvA"
-            },
             "tests": []
         },
         {
@@ -96,17 +95,13 @@
             "method": "PUT",
             "sortNum": 50000,
             "created": "2023-11-17T02:38:39.477Z",
-            "modified": "2023-11-17T05:40:28.311Z",
+            "modified": "2023-11-17T13:45:23.513Z",
             "headers": [],
             "params": [],
             "body": {
                 "type": "json",
-                "raw": "{\n  \"name\" : \"admin\",\n  \"email\" : \"admin@gmail.com\",\n  \"address\" : \"lebak bulus\"\n}",
+                "raw": "{\n  \"name\" : \"bulan sutena\",\n  \"email\" : \"user2@gmail.com\",\n  \"address\" : \"lebak bulus\"\n}",
                 "form": []
-            },
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDAyODU4OTIsInVzZXJJRCI6Mn0.oKfDlr2lkp5dhALHwfmQESrkudhlzMMYuEz4SacKIbc"
             },
             "tests": []
         },
@@ -115,17 +110,93 @@
             "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
             "containerId": "7bbc879c-d3d9-4530-8994-b747d4159897",
             "name": "DELETE USER BY ID",
-            "url": "user/3",
+            "url": "user/1",
             "method": "DELETE",
             "sortNum": 60000,
             "created": "2023-11-17T05:36:57.828Z",
-            "modified": "2023-11-17T05:41:09.547Z",
+            "modified": "2023-11-17T13:45:30.937Z",
             "headers": [],
             "params": [],
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDAyODU4OTIsInVzZXJJRCI6Mn0.oKfDlr2lkp5dhALHwfmQESrkudhlzMMYuEz4SacKIbc"
+            "tests": []
+        },
+        {
+            "_id": "86109fc4-0fa9-4f64-8cc6-7016e3f6623e",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "363bf79e-feb2-4729-bba9-dac31b8186a0",
+            "name": "CREATE PRODUCT",
+            "url": "product",
+            "method": "POST",
+            "sortNum": 70000,
+            "created": "2023-11-17T07:02:50.807Z",
+            "modified": "2023-11-17T13:45:38.774Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"dress kebaya malaya\",\n  \"price\": 200000,\n  \"stock\": 19,\n  \"description\": \"bahan full katun\"\n}",
+                "form": []
             },
+            "tests": []
+        },
+        {
+            "_id": "9c752935-6604-4e9b-8e7a-fad8ba04aca1",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "363bf79e-feb2-4729-bba9-dac31b8186a0",
+            "name": "GET ALL PRODUCTS",
+            "url": "product",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2023-11-17T07:10:32.555Z",
+            "modified": "2023-11-17T07:11:02.198Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "8c5d751a-4a80-4d11-8b35-1179a13fcf6e",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "363bf79e-feb2-4729-bba9-dac31b8186a0",
+            "name": "GET PRODUCT BY ID",
+            "url": "product/4",
+            "method": "GET",
+            "sortNum": 90000,
+            "created": "2023-11-17T07:44:31.258Z",
+            "modified": "2023-11-17T13:46:02.183Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fa5444b6-d894-444f-92ee-7beaec0f9b03",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "363bf79e-feb2-4729-bba9-dac31b8186a0",
+            "name": "UPDATE PRODUCT BY ID",
+            "url": "product/3",
+            "method": "PUT",
+            "sortNum": 100000,
+            "created": "2023-11-17T07:48:53.285Z",
+            "modified": "2023-11-17T13:46:12.585Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"dress kebaya\",\n  \"price\": 200000,\n  \"stock\": 80,\n  \"description\": \"bahan full katun\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "99e8f159-821b-4609-bdaf-b717cec5d4d2",
+            "colId": "53f77e07-01d4-403a-8641-4288c6ee5983",
+            "containerId": "363bf79e-feb2-4729-bba9-dac31b8186a0",
+            "name": "DELETE PRODUCT BY ID",
+            "url": "product/2",
+            "method": "DELETE",
+            "sortNum": 110000,
+            "created": "2023-11-17T12:24:27.701Z",
+            "modified": "2023-11-17T13:46:19.706Z",
+            "headers": [],
+            "params": [],
             "tests": []
         }
     ],
