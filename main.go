@@ -30,6 +30,7 @@ func main() {
 
 	userhandler := handler.NewUserHandler(userServices, authServices)
 
+	apiV1.Get("/users", userhandler.FindAll)
 	apiV1.Post("/user", userhandler.Register)
 	apiV1.Post("/login", userhandler.Login)
 

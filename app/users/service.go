@@ -9,6 +9,7 @@ import (
 type UserService interface {
 	Register(input *UserRegister) (User, error)
 	Login(input *UserLogin) (UserLoginFormatter, error)
+	FindAll() ([]User, error)
 }
 
 type userService struct {
@@ -65,5 +66,13 @@ func (s *userService) Login(input *UserLogin) (UserLoginFormatter, error) {
 	user.Address = userEmail.Address
 
 	return user, nil
+}
 
+func (s *userService) FindAll() ([]User, error) {
+
+	users, err := s.repository.FindAll()
+	if err != nil {
+		return users, err
+	}
+	return users, nil
 }

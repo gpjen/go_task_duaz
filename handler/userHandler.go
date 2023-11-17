@@ -66,3 +66,11 @@ func (h *userHandler) Login(c *fiber.Ctx) error {
 
 	return helper.Response(c, 200, "login success", user)
 }
+
+func (h *userHandler) FindAll(c *fiber.Ctx) error {
+	users, err := h.userService.FindAll()
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+	return helper.Response(c, 200, "find all user", users)
+}
