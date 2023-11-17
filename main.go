@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"user-product-management/app/auth"
+	"user-product-management/app/middleware"
 	"user-product-management/app/users"
 	"user-product-management/db"
 	"user-product-management/handler"
@@ -30,7 +31,7 @@ func main() {
 
 	userhandler := handler.NewUserHandler(userServices, authServices)
 
-	apiV1.Get("/users", userhandler.FindAll)
+	apiV1.Get("/users", middleware.AuthMiddleware(userServices, authServices), userhandler.FindAll)
 	apiV1.Post("/user", userhandler.Register)
 	apiV1.Post("/login", userhandler.Login)
 

@@ -68,6 +68,8 @@ func (h *userHandler) Login(c *fiber.Ctx) error {
 }
 
 func (h *userHandler) FindAll(c *fiber.Ctx) error {
+
+	// fmt.Println(c.Locals("userID"))
 	users, err := h.userService.FindAll()
 	if err != nil {
 		return helper.Response(c, 400, err.Error(), nil)

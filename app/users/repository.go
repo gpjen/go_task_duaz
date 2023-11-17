@@ -6,6 +6,8 @@ type UserRepository interface {
 	Register(user User) (User, error)
 	FindBYEmail(email string) (User, error)
 	FindAll() ([]User, error)
+	FindByID(id uint) (User, error)
+	UpdateUser(user User) (User, error)
 }
 
 type userRepository struct {
@@ -40,4 +42,21 @@ func (r *userRepository) FindAll() ([]User, error) {
 		return users, err
 	}
 	return users, nil
+}
+
+func (r *userRepository) FindByID(id uint) (User, error) {
+	var user User
+	err := r.db.Where("id = ?", id).First(&user).Error
+	if err != nil {
+		return user, err
+	}
+	return user, nil
+}
+
+func (r *userRepository) UpdateUser(user User) (User, error) {
+	err := r.db.Save(&user).Error
+	if err != nil {
+		return user, err
+	}
+	return user, nil
 }

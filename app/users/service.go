@@ -10,6 +10,7 @@ type UserService interface {
 	Register(input *UserRegister) (User, error)
 	Login(input *UserLogin) (UserLoginFormatter, error)
 	FindAll() ([]User, error)
+	FindByID(id uint) (User, error)
 }
 
 type userService struct {
@@ -75,4 +76,12 @@ func (s *userService) FindAll() ([]User, error) {
 		return users, err
 	}
 	return users, nil
+}
+
+func (s *userService) FindByID(id uint) (User, error) {
+	user, err := s.repository.FindByID(id)
+	if err != nil {
+		return user, err
+	}
+	return user, nil
 }
