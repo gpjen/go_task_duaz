@@ -9,6 +9,8 @@ type Product struct {
 	Stock       int    `json:"stock" gorm:"not null"`
 	Description string `json:"description" gorm:"not null"`
 
+	CreatorID uint `json:"creatorID" gorm:"not null"`
+
 	CreatedAt time.Time `json:"createdAt" gorm:"default:CURRENT_TIMESTAMP"`
 	UpdatedAt time.Time `json:"updatedAt" gorm:"default:CURRENT_TIMESTAMP"`
 }
