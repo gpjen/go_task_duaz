@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"user-product-management/app/auth"
 	"user-product-management/app/users"
 	"user-product-management/helper"
 
@@ -8,11 +9,12 @@ import (
 )
 
 type userHandler struct {
-	UserService users.UserService
+	userService users.UserService
+	authService auth.Service
 }
 
-func NewUserHandler(userService users.UserService) *userHandler {
-	return &userHandler{userService}
+func NewUserHandler(userService users.UserService, authService auth.Service) *userHandler {
+	return &userHandler{userService, authService}
 }
 
 func (h *userHandler) Register(c *fiber.Ctx) error {
@@ -28,7 +30,7 @@ func (h *userHandler) Register(c *fiber.Ctx) error {
 		return helper.Response(c, fiber.StatusUnprocessableEntity, "validation error", validateList)
 	}
 
-	user, err := h.UserService.Register(input)
+	user, err := h.userService.Register(input)
 	if err != nil {
 		return helper.Response(c, 400, err.Error(), nil)
 	}
@@ -49,10 +51,18 @@ func (h *userHandler) Login(c *fiber.Ctx) error {
 		return helper.Response(c, fiber.StatusUnprocessableEntity, "validation error", validateList)
 	}
 
-	user, err := h.UserService.Login(input)
+	user, err := h.userService.Login(input)
 	if err != nil {
 		return helper.Response(c, 400, err.Error(), nil)
 	}
+
+	// generate token
+	token, err := h.authService.GenerateToken(user.ID)
+	if err != nil {
+		return helper.Response(c, 400, err.Error(), nil)
+	}
+
+	user.Token = token
 
 	return helper.Response(c, 200, "login success", user)
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"user-product-management/app/auth"
 	"user-product-management/app/users"
 	"user-product-management/db"
 	"user-product-management/handler"
@@ -23,8 +24,11 @@ func main() {
 	apiV1 := app.Group("v1")
 
 	userRepository := users.NewUserRepository(db.DB)
+
 	userServices := users.NewUserService(userRepository)
-	userhandler := handler.NewUserHandler(userServices)
+	authServices := auth.NewService()
+
+	userhandler := handler.NewUserHandler(userServices, authServices)
 
 	apiV1.Post("/user", userhandler.Register)
 	apiV1.Post("/login", userhandler.Login)

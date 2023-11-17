@@ -59,6 +59,7 @@ func (s *userService) Login(input *UserLogin) (UserLoginFormatter, error) {
 		return user, errors.New("email or password is wrong")
 	}
 
+	user.ID = userEmail.ID
 	user.Name = userEmail.Name
 	user.Email = userEmail.Email
 	user.Address = userEmail.Address
